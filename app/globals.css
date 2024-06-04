@@ -2,32 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: "FOT-Rodin Pro L";
+  src: url("/font/FOTRodinProL.otf") format("opentype");
+}
+@font-face {
+  font-family: "FOT-Rodin Pro M";
+  src: url("/font/FOTRodinProM.otf") format("opentype");
+}
+@font-face {
+  font-family: "FOT-Rodin Pro DB";
+  src: url("/font/FOTRodinProDB.otf") format("opentype");
+}
+@font-face {
+  font-family: "FOT-Rodin Pro EB";
+  src: url("/font/FOTRodinProEB.otf") format("opentype");
+}
+@font-face {
+  font-family: "FOT-Rodin Pro UB";
+  src: url("/font/FOTRodinProUB.otf") format("opentype");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.cursor-custom {
+  cursor: url("/assets/cursor/cursor2.svg"), auto;
+}
+
+::selection {
+  @apply bg-yellow-400/75;
+}
+
+/* Temporary */
+
+.masked-element {
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 90%, 0 100%, 0 100%);
+}
+.masked-element:hover {
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 100% 90%, 100% 100%, 0 100%);
+}
+
+.animSlideY {
+  animation: slideY 160s linear infinite;
+}
+
+@keyframes slideY {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.animSlideX {
+  animation: slideX 80s linear infinite;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@keyframes slideX {
+  0% {
+    transform: translateX(0);
   }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animSlide {
+  animation: slide 120s linear infinite;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%);
+  }
+}
+
+.inner-shadow {
+  box-shadow: 0px 0px 20px 16px rgba(0, 0, 0, 0.1) inset, 0px 4px 12px 4px rgba(0, 0, 0, 0.5);
+}
+
+.teste {
+  /* clip-path: polygon(0 0, 100% 0, 100% calc(100% - 45px), 50% 100%, 0 calc(100% - 45px)); */
+  -webkit-mask-image: url(#mask);
+  mask-image: url(#mask);
 }
