@@ -14,6 +14,7 @@ import { Icon } from "@/components/Icon";
 import { Card } from "@/components/Card";
 import { MaskZigZag } from "@/components/MaskZigZag";
 import { Box } from "@/components/Box";
+import { PatternPumpkin } from "@/components/PatternPumpkin";
 
 export default function Home() {
   const [test, setTest] = useState(1);
@@ -23,7 +24,7 @@ export default function Home() {
     <div className="cursor-custom font-rodinDB">
       {/* Content */}
       <div className="relative h-[80vh] shadow-xl mask-zig-zag">
-        <PatternStar />
+        <PatternPumpkin />
         <MaskZigZag />
 
         <div className="flex pt-4 justify-center gap-8">
