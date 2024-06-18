@@ -1,3 +1,5 @@
+import { QuizTemplate } from "@/types/types";
+
 const QuizList: QuizTemplate[] = [
   {
     id: "",

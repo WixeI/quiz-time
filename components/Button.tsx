@@ -28,15 +28,17 @@ const style = {
 
 // Component Definition
 export const Button: React.FC<props> = ({ className, children, size = "sm", ...props }: props) => {
-  const [sfxClick, setSfxClick] = useState<HTMLAudioElement>(new Audio("/assets/sfx/button_click.wav"));
+  const [sfxClick, setSfxClick] = useState<HTMLAudioElement>();
 
   useEffect(() => {
     // Mounting Operations
-    sfxClick.volume = 0.2;
+    const initialAudio = new Audio("/assets/sfx/button_click.wav");
+    initialAudio.volume = 0.2;
+    setSfxClick(initialAudio);
 
     // When Unmounting, remove Audio object
     return () => {
-      sfxClick.srcObject = null;
+      sfxClick && (sfxClick.srcObject = null);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -44,11 +46,11 @@ export const Button: React.FC<props> = ({ className, children, size = "sm", ...p
   // Sound Events
   const handleKeyDown: KeyboardEventHandler = (e) => {
     if (e.key !== " ") return;
-    sfxClick.play();
+    sfxClick && sfxClick.play();
   };
 
   const handleClick: MouseEventHandler = (e) => {
-    sfxClick.play();
+    sfxClick && sfxClick.play();
   };
 
   // HTML
