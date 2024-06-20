@@ -31,30 +31,32 @@ const style = {
 // Component Definition
 export const Input: React.FC<props> = ({ className, area = "sm", ...props }: props) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [sfxClick, setSfxClick] = useState<HTMLAudioElement>(new Audio("/assets/sfx/button_click.wav"));
+  const [sfxClick, setSfxClick] = useState<HTMLAudioElement>();
 
   // Handle Sound
   useEffect(() => {
     // Mounting Operations
-    sfxClick.volume = 0.2;
+    const audio = new Audio("/assets/sfx/button_click.wav");
+    audio.volume = 0.2;
+    setSfxClick(audio);
 
     // When Unmounting, remove Audio object
     return () => {
-      sfxClick.srcObject = null;
+      sfxClick && (sfxClick.srcObject = null);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Sound Events
   const handleKeyDownSound: FormEventHandler = (e) => {
-    sfxClick.src = "/assets/sfx/switch_sound.wav";
-    sfxClick.play();
+    sfxClick && (sfxClick.src = "/assets/sfx/switch_sound.wav");
+    sfxClick && sfxClick.play();
   };
 
   // Handle focus
   const handleClickFocus: MouseEventHandler = (e) => {
-    sfxClick.src = "/assets/sfx/button_click.wav";
-    sfxClick.play();
+    sfxClick && (sfxClick.src = "/assets/sfx/button_click.wav");
+    sfxClick && sfxClick.play();
     inputRef.current?.focus();
     e.preventDefault();
   };

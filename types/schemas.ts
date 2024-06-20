@@ -74,7 +74,7 @@ export const quizTemplateSchema = z
 
 export const questionAnswerSchema = z.object({
   questionID: z.string().uuid(),
-  answerID: z.string().uuid(),
+  answerOptionID: z.string().uuid(),
 });
 
 export const quizResultSchema = z
