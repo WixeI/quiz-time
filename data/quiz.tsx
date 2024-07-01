@@ -1,6 +1,7 @@
-import { QuizTemplate } from "@/types/types";
+import { QuestionAnswer, QuizInstance, QuizTemplate, UserProfile } from "@/types/types";
+import { v4 as uuidv4 } from "uuid";
 
-const QuizList: QuizTemplate[] = [
+export const QuizList: QuizTemplate[] = [
   {
     id: "",
     title: "Spooky Scary Questions For a Halloween with @user",
@@ -8,7 +9,7 @@ const QuizList: QuizTemplate[] = [
     questionPool: [
       {
         id: "",
-        prompt: "You were visited by some kids you don't know. Trick or Treat?",
+        prompt: "@user were visited by some kids they don't know. Trick or Treat?",
         options: [
           {
             id: "",
@@ -634,13 +635,28 @@ const QuizList: QuizTemplate[] = [
   },
 ];
 
-const generateQuiz = (quiz: QuizTemplate): QuizTemplate => {
-  // Generate ID for QuizTemplate
-
-  // Generate ID for questionPool items
-
-  // Generate ID for option items
+/** Creates a QuizInstance based on a QuizTemplate. This object is created when the user finishes answering all questions with their preferences to create a QuizInstance off of a QuizTemplate they were seeing */
+export const createCompleteQuizTemplate = (
+  templateID: string,
+  user: UserProfile,
+  questionList: QuestionAnswer[]
+): QuizInstance => {
+  const QuizInstance: QuizInstance = {
+    id: uuidv4(),
+    templateID: templateID,
+    owner: user,
+    questionList: questionList,
+    leaderboard: [],
+  };
 
   // Return statement
-  return quiz;
+  return QuizInstance;
+};
+
+/** Formats the QuizTemplate object to replace any variables in string prompts with their respective values */
+export const formatQuiz = (quiz: QuizTemplate, user: UserProfile) => {
+  quiz.title = quiz.title.replace("@user", user.nickname);
+  quiz.description = quiz.description.replace("@user", user.nickname);
+
+  quiz.questionPool.map((question) => (question.prompt = question.prompt.replace("@user", user.nickname)));
 };

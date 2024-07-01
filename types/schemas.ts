@@ -94,6 +94,7 @@ export const quizResultSchema = z
   });
 
 export const quizInstanceSchema = z.object({
+  id: z.string().uuid(),
   templateID: z.string().uuid(),
   owner: userProfileSchema,
   questionList: z.array(questionAnswerSchema),

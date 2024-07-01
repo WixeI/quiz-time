@@ -14,6 +14,7 @@ import { Icon } from "@/components/Icon";
 import { Card } from "@/components/Card";
 import { MaskZigZag } from "@/components/MaskZigZag";
 import { Box } from "@/components/Box";
+import { QuizList } from "@/data/quiz";
 // import { PatternPumpkin } from "@/components/PatternPumpkin";
 
 export default function Home() {
@@ -48,15 +49,18 @@ export default function Home() {
             </Title>
             <Text>This is some text that tends to be longer</Text>
 
-            <Button
-              onClick={() => {
-                import("../components/PatternPumpkin").then((comp) => {
-                  setComponent(comp.PatternPumpkin);
-                });
-              }}
-            >
-              Change Theme
-            </Button>
+            {QuizList.map((quiz) => (
+              <Button
+                key={quiz.id}
+                onClick={() => {
+                  import(`../components/${quiz.design.visual.backdropSrc}`).then((comp) => {
+                    setComponent(comp[quiz.design.visual.backdropSrc]);
+                  });
+                }}
+              >
+                {quiz.title}
+              </Button>
+            ))}
 
             <Input />
 
