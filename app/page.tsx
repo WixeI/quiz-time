@@ -1,25 +1,15 @@
 "use client";
-import { Button } from "@/components/Button";
-import { Input } from "@/components/Input";
 import { PatternDiagonal } from "@/components/PatternDiagonal";
-// import { PatternStar } from "@/components/PatternStar";
 import { Text } from "@/components/Text";
 import { Title } from "@/components/Title";
-import { AudioPlayer, useStoreAudio } from "@/data/audioStore";
+import { Button } from "@/components/Button";
+import { useStoreAudio } from "@/data/audioStore";
 import { useEffect, useState } from "react";
-import { IconFountainFilled } from "@tabler/icons-react";
-import { HomeIcon } from "@heroicons/react/24/solid";
-import { Balloon } from "@/components/Balloon";
-import { Icon } from "@/components/Icon";
-import { Card } from "@/components/Card";
 import { MaskZigZag } from "@/components/MaskZigZag";
 import { Box } from "@/components/Box";
-import { QuizList } from "@/data/quiz";
-// import { PatternPumpkin } from "@/components/PatternPumpkin";
+import Link from "next/link";
 
 export default function Home() {
-  const [test, setTest] = useState(1);
-  const { isPlaying } = useStoreAudio();
   const [Component, setComponent] = useState<any>(null);
 
   useEffect(() => {
@@ -41,46 +31,14 @@ export default function Home() {
         {Component}
         <MaskZigZag />
 
-        <div className="flex pt-4 justify-center gap-8">
-          {/* Left */}
-          <div className="flex flex-col gap-4 justify-center items-center">
-            <Title as="h1" hasUnderline>
-              This is a Title
-            </Title>
-            <Text>This is some text that tends to be longer</Text>
+        <div className="flex flex-col py-4 justify-center items-center gap-8">
+          <Title as="h1" className="py-4">
+            Home Page
+          </Title>
 
-            {QuizList.map((quiz) => (
-              <Button
-                key={quiz.id}
-                onClick={() => {
-                  import(`../components/${quiz.design.visual.backdropSrc}`).then((comp) => {
-                    setComponent(comp[quiz.design.visual.backdropSrc]);
-                  });
-                }}
-              >
-                {quiz.title}
-              </Button>
-            ))}
-
-            <Input />
-
-            <AudioPlayer />
-
-            <Balloon size="md">
-              <Text className="text-xl">Playing Music: {isPlaying.toString()}</Text>
-            </Balloon>
-          </div>
-
-          {/* Right */}
-          <Card className="flex flex-col min-w-[30rem] gap-4 justify-center items-center">
-            <Title as="h1" hasUnderline>
-              This is a Title
-            </Title>
-            <Icon Shape={HomeIcon} size="lg" main />
-            <Icon Shape={IconFountainFilled} size="lg" main />
-            <Text>Use your hat to throw, and line em up in a row!</Text>
-            <Button onClick={() => setTest((prev) => prev + 1)}>Increment Value: {test}</Button>
-          </Card>
+          <Link href="/components-showcase">
+            <Button>Components Showcase</Button>
+          </Link>
         </div>
       </div>
 
