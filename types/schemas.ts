@@ -63,7 +63,8 @@ export const quizTemplateSchema = z
     if (data.questionAmount > data.questionPool.length) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: "questionAmount cannot be greater than the length of questionPool",
+        message:
+          "questionAmount cannot be greater than the length of questionPool",
         path: ["questionAmount"],
       });
     }
@@ -87,7 +88,8 @@ export const quizResultSchema = z
     if (data.correctAnswerAmount > data.questionList.length) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: "correctAnswerAmount cannot be greater than the length of questionList",
+        message:
+          "correctAnswerAmount cannot be greater than the length of questionList",
         path: ["correctAnswerAmount"],
       });
     }

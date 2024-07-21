@@ -1,20 +1,12 @@
 "use client";
-import { Button } from "@/components/Button";
-import { Input } from "@/components/Input";
-import { PatternDiagonal } from "@/components/PatternDiagonal";
-import { Text } from "@/components/Text";
-import { Title } from "@/components/Title";
-import { AudioPlayer, useStoreAudio } from "@/data/audioStore";
-import { useEffect, useState } from "react";
-import { IconFountainFilled } from "@tabler/icons-react";
 import { HomeIcon } from "@heroicons/react/24/solid";
-import { Balloon } from "@/components/Balloon";
-import { Icon } from "@/components/Icon";
-import { Card } from "@/components/Card";
-import { MaskZigZag } from "@/components/MaskZigZag";
-import { Box } from "@/components/Box";
-import { QuizList } from "@/data/quiz";
+import { IconFountainFilled } from "@tabler/icons-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
+import { Balloon, Box, Button, Card, Icon, Input, MaskZigZag, PatternDiagonal, Text, Title } from "@/components/index";
+import { AudioPlayer, useStoreAudio } from "@/data/audioStore";
+import { QuizList } from "@/data/quiz";
 
 export default function Home() {
   const [test, setTest] = useState(1);
@@ -26,7 +18,7 @@ export default function Home() {
       .then((comp) => {
         setComponent(comp.PatternStar);
       })
-      .catch((err) => console.error("Failed to load component", err));
+      .catch((err) => "Failed to load component " + err);
   }, []);
 
   if (!Component) {

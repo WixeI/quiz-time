@@ -1,0 +1,13 @@
+import { tv } from 'tailwind-variants';
+
+const styleConfig = tv({
+  slots: {
+    root: '',
+  },
+});
+
+export const {{pascalCase name}}: React.FC<object & React.ComponentPropsWithoutRef<'div'>> = ({ ...props }) => {
+  const styles = styleConfig();
+
+  return <div className={styles.root()} {...props}>{{pascalCase name}}</div>;
+};

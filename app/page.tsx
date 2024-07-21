@@ -1,13 +1,9 @@
 "use client";
-import { PatternDiagonal } from "@/components/PatternDiagonal";
-import { Text } from "@/components/Text";
-import { Title } from "@/components/Title";
-import { Button } from "@/components/Button";
-import { useStoreAudio } from "@/data/audioStore";
-import { useEffect, useState } from "react";
-import { MaskZigZag } from "@/components/MaskZigZag";
-import { Box } from "@/components/Box";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
+import { Box, Button, MaskZigZag, PatternDiagonal, Text, Title } from "@/components/index";
+import { useStoreAudio } from "@/data/audioStore";
 
 export default function Home() {
   const [Component, setComponent] = useState<any>(null);
@@ -17,7 +13,7 @@ export default function Home() {
       .then((comp) => {
         setComponent(comp.PatternStar);
       })
-      .catch((err) => console.error("Failed to load component", err));
+      .catch((err) => "Failed to load component " + err);
   }, []);
 
   if (!Component) {
