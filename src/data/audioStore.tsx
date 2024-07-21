@@ -1,6 +1,7 @@
-import { Button } from "@/components/Button";
-import { useState, useEffect, EventHandler } from "react";
+import { EventHandler,useEffect, useState } from "react";
 import { create } from "zustand";
+
+import { Button } from "@/components/Button";
 
 type GlobalAudioState = {
   audio: HTMLAudioElement | null;
